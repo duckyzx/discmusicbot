@@ -111,7 +111,7 @@ class music_cog(commands.Cog):
         await ctx.voice_client.resume()
         await ctx.send("Resumed")
 
-    @Bot.command(name="disconnect", help="Disconnects the bot from the channel")
+    @commands.command(name="disconnect", help="Disconnects the bot from the channel")
     async def leave(self, ctx):
        await ctx.voice.voice_client.disconnect()
        await ctx.send("Disconnected") 

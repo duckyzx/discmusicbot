@@ -121,7 +121,7 @@ class music_cog(commands.Cog):
     
     @client.command(pass_context=True)
     async def leave(ctx):
-        server = ctx.message.voice_client
+        server = ctx.voice_client
         await server.disconnect(force = True)
 
     #async def leave(self, ctx):

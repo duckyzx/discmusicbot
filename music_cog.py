@@ -111,10 +111,18 @@ class music_cog(commands.Cog):
         await ctx.voice_client.resume()
         await ctx.send("Resumed")
 
-    @commands.command(name="disconnect", aliases=["leave"])
-    async def disconnect_command(self, ctx):
-        player = self.vc(ctx)
-        await ctx.send("/disconnect")
+    #@commands.command(name="disconnect", aliases=["leave"])
+    #async def disconnect_command(self, ctx):
+     #   player = self.vc(ctx)
+      #  await ctx.send("/disconnect")
+
+    @client.command(pass_context = True)
+    async def leavevoice(ctx):
+        for x in client.voice_clients:
+            if(x.server == ctx.message.server):
+                return await x.disconnect()
+
+        return await client.say("I am not connected to any voice channel on this server!")
 
     #async def leave(self, ctx):
      #  await ctx.voice.voice_client.disconnect()

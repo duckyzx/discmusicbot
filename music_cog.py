@@ -63,7 +63,7 @@ class music_cog(commands.Cog):
         else:
             self.is_playing = False
 
-    @Bot.command(name="play", help="Plays a selected song from youtube")
+    @commands.command(name="play", help="Plays a selected song from youtube")
     async def p(self, ctx, *args):
         query = " ".join(args)
         
@@ -82,7 +82,7 @@ class music_cog(commands.Cog):
                 if self.is_playing == False:
                     await self.play_music()
 
-    @Bot.command(name="queue", help="Displays the current songs in queue")
+    @commands.command(name="queue", help="Displays the current songs in queue")
     async def q(self, ctx):
         retval = ""
         for i in range(0, len(self.music_queue)):
@@ -94,28 +94,33 @@ class music_cog(commands.Cog):
         else:
             await ctx.send("No music in queue")
 
-    @Bot.command(name="skip", help="Skips the current song being played")
+    @commands.command(name="skip", help="Skips the current song being played")
     async def skip(self, ctx):
         if self.vc != "" and self.vc:
             self.vc.stop()
             #try to play next in the queue if it exists
             await self.play_music()
 
-    @Bot.command(name="pause", help="Pauses a selected song from youtube")
+    @commands.command(name="pause", help="Pauses a selected song from youtube")
     async def pause(self, ctx):
         await ctx.voice_client.pause()
         await ctx.send("Paused")
     
-    @Bot.command(name="resume", help="Resume a selected song from youtube")
+    @commands.command(name="resume", help="Resume a selected song from youtube")
     async def resume(self, ctx):
         await ctx.voice_client.resume()
         await ctx.send("Resumed")
 
-    @Bot.command(name="disconnect", help="Disconnects the bot from the channel")
+    @commands.command(name="disconnect", help="Disconnects the bot from the channel")
     async def leave(self, ctx):
        await ctx.voice.voice_client.disconnect()
        await ctx.send("Disconnected") 
 
+    #@client.command(pass_context=True)
+    #async def leave(ctx):
+     #   server = ctx.message.guild.voice_client
+      #  await server.disconnect()
+    
     #@client.command(pass_context = True)
     #async def leavevoice(ctx):
      #   for x in client.voice_clients:

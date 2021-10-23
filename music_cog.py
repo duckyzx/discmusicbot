@@ -114,19 +114,15 @@ class music_cog(commands.Cog):
     #@commands.command(name="disconnect", help="Disconnects the bot from the channel")
     #async def leave(ctx): # Note: ?leave won't work, only ?~ will work unless you change  `name = ["~"]` to `aliases = ["~"]` so both can work.
      #   if (ctx.voice_client): # If the bot is in a voice channel 
-      #      await ctx.voice_client.disconnect() # Leave the channel
-       #     await ctx.send('Bot left')
+      #      await query.disconnect() # Leave the channel
+       #     await ctx.send('bruh')
         #else: # But if it isn't
-         #   await ctx.send("I'm not in a voice channel, use the join command to make me join")
-
-    @commands.command(name="disconnect", help="Disconnects the bot from the channel")
-    async def leave(ctx): # Note: ?leave won't work, only ?~ will work unless you change  `name = ["~"]` to `aliases = ["~"]` so both can work.
-        if (ctx.voice_client): # If the bot is in a voice channel 
-            #await query.disconnect() # Leave the channel
-            self.vc.disconnect()
-            await ctx.send('bruh')
-        else: # But if it isn't
-            await ctx.send("man")
+         #   await ctx.send("man")
+    
+    @client.command(pass_context=True)
+    async def leave(ctx):
+        server = ctx.message.voice_client
+        await server.disconnect(force = True)
 
     #async def leave(self, ctx):
      #  await ctx.voice.voice_client.disconnect()

@@ -117,7 +117,7 @@ class music_cog(commands.Cog):
       #  await ctx.send("/disconnect")
 
     @commands.command(pass_context = True)
-    async def leavevoice(ctx):
+    async def leavevoice(self, ctx):
         for x in client.voice_clients:
             if(x.server == ctx.message.server):
                 return await x.disconnect()

@@ -110,9 +110,7 @@ class music_cog(commands.Cog):
     async def resume(self, ctx):
         await ctx.voice_client.resume()
         await ctx.send("Resumed")
-
-    
-    
+        
     @commands.command(name="disconnect", aliases=["leave"])
     async def disconnect_command(self, ctx):
         player = self.get_player(ctx)
